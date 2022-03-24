@@ -15,7 +15,7 @@ const tasks = [
 ];
 
 function component() {
-  for (let i = 0; i < tasks.length; i++) {
+  for (let i = 0; i < tasks.length; i += 1) {
     const element = document.createElement('div');
     element.classList.add('list-content');
 
