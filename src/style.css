@@ -70,3 +70,7 @@ body {
 .clear-btn {
   height: 6vh;
 }
+
+.fa-solid.fa-trash-can {
+  cursor: pointer;
+}
