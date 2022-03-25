@@ -37,10 +37,9 @@ export class TaskList {
 
   remove = (index) => {
     const tasks = JSON.parse(localStorage.getItem('tasks'));
+    tasks.splice(index, 1);
     for (let i = 0; i < tasks.length; i += 1) {
-      if (index === tasks[i].index) {
-        tasks.splice(i, 1);
-      }
+      tasks[i].index = i + 1 - 1;
     }
 
     localStorage.setItem('tasks', JSON.stringify(tasks));
