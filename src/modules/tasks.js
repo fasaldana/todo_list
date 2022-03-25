@@ -1,5 +1,6 @@
 import _ from 'lodash';
 
+/* eslint-disable import/prefer-default-export */
 export class TaskList {
   list = document.getElementById('list-items');
 
