@@ -1,4 +1,5 @@
 import _ from 'lodash';
+
 export class TaskList {
   list = document.getElementById('list-items');
 
@@ -9,13 +10,10 @@ export class TaskList {
   createEmpty = () => {
     const tasks = [];
     localStorage.setItem('tasks', JSON.stringify(tasks));
-    console.log('done');
   };
 
   add = (e) => {
-    console.log('hola');
     const taskName = document.getElementById('task').value;
-    let index;
     const tasks = [];
 
     const task = {
@@ -26,12 +24,9 @@ export class TaskList {
     if (localStorage.getItem('tasks') === null) {
       tasks.push(task);
       localStorage.setItem('tasks', JSON.stringify(tasks));
-      console.log('hola');
     } else {
-      console.log('hola');
       const tasks = JSON.parse(localStorage.getItem('tasks'));
       task.index = tasks.length;
-      console.log(task.taskName);
       tasks.push(task);
       localStorage.setItem('tasks', JSON.stringify(tasks));
     }
@@ -67,7 +62,6 @@ export class TaskList {
       this.createEmpty();
     }
     for (let i = 0; i < tasks.length; i += 1) {
-      console.log(tasks);
       const { taskName, index } = tasks[i];
       const element = document.createElement('div');
       element.classList.add('list-content');
@@ -83,14 +77,10 @@ export class TaskList {
       desc.id = 'task-label';
       desc.contentEditable = 'true';
 
-      const descChange = document.createElement('input');
-      descChange.type = 'text';
-      descChange.id = 'input-edit';
-      descChange.style.display = 'none';
-
       const moveIcon = document.createElement('i');
       moveIcon.classList.add('fa-solid');
       moveIcon.classList.add('fa-ellipsis-vertical');
+      moveIcon.style.display = 'none';
 
       const deleteIcon = document.createElement('i');
       deleteIcon.classList.add('fa-solid');
@@ -107,11 +97,10 @@ export class TaskList {
         }
       });
       desc.addEventListener('input', () => {
-        console.log('fol');
         this.edit(i, desc.innerHTML);
       });
 
-      contentDiv.append(input, desc, descChange);
+      contentDiv.append(input, desc);
       element.append(contentDiv, moveIcon, deleteIcon);
       const list = document.getElementById('list-items');
 
