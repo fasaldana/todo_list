@@ -58,7 +58,7 @@ export class TaskList {
     task.forEach((e) => {
       tasks.splice(
         tasks.findIndex((f) => f.completed === e.completed),
-        1,
+        1
       );
     });
     for (let i = 0; i < tasks.length; i += 1) {
@@ -74,7 +74,7 @@ export class TaskList {
       this.createEmpty();
     }
     for (let i = 0; i < tasks.length; i += 1) {
-      const { taskName, index } = tasks[i];
+      const { taskName, completed, index } = tasks[i];
       const element = document.createElement('div');
       element.classList.add('list-content');
 
@@ -88,6 +88,16 @@ export class TaskList {
       const desc = document.createElement('label');
       desc.classList.add('task-label');
       desc.contentEditable = 'true';
+
+      if (completed) {
+        desc.style.textDecoration = 'line-through';
+        desc.style.color = '#c0c0c0';
+        input.checked = true;
+      } else {
+        desc.style.textDecoration = 'none';
+        desc.style.color = '#000';
+        input.checked = false;
+      }
 
       const moveIcon = document.createElement('i');
       moveIcon.classList.add('fa-solid');
