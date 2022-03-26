@@ -1,4 +1,4 @@
-import _, { zip } from 'lodash';
+import _ from 'lodash';
 
 /* eslint-disable import/prefer-default-export */
 export class TaskList {
@@ -54,14 +54,13 @@ export class TaskList {
 
   removeComplete = () => {
     const tasks = JSON.parse(localStorage.getItem('tasks'));
-    let task = tasks.filter((tsk) => tsk.completed === true);
+    const task = tasks.filter((tsk) => tsk.completed === true);
     task.forEach((e) => {
       tasks.splice(
         tasks.findIndex((f) => f.completed === e.completed),
-        1
+        1,
       );
     });
-    console.log(tasks);
     for (let i = 0; i < tasks.length; i += 1) {
       tasks[i].index = i + 1 - 1;
     }
@@ -75,7 +74,7 @@ export class TaskList {
       this.createEmpty();
     }
     for (let i = 0; i < tasks.length; i += 1) {
-      const { taskName, completed, index } = tasks[i];
+      const { taskName, index } = tasks[i];
       const element = document.createElement('div');
       element.classList.add('list-content');
 
