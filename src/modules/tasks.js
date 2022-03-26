@@ -58,7 +58,7 @@ export class TaskList {
     task.forEach((e) => {
       tasks.splice(
         tasks.findIndex((f) => f.completed === e.completed),
-        1
+        1,
       );
     });
     for (let i = 0; i < tasks.length; i += 1) {
