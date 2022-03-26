@@ -62,11 +62,6 @@ body {
   cursor: move;
 }
 
-.check:checked + label {
-  text-decoration: line-through;
-  color: #c0c0c0;
-}
-
 .clear-btn {
   height: 6vh;
 }
