@@ -4,10 +4,6 @@ import _ from 'lodash';
 export class TaskList {
   list = document.getElementById('list-items');
 
-  constructor() {
-    this.todos = [];
-  }
-
   createEmpty = () => {
     const tasks = [];
     localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -56,13 +52,29 @@ export class TaskList {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   };
 
+  removeComplete = () => {
+    const tasks = JSON.parse(localStorage.getItem('tasks'));
+    const task = tasks.filter((tsk) => tsk.completed === true);
+    task.forEach((e) => {
+      tasks.splice(
+        tasks.findIndex((f) => f.completed === e.completed),
+        1,
+      );
+    });
+    for (let i = 0; i < tasks.length; i += 1) {
+      tasks[i].index = i + 1 - 1;
+    }
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    window.location.reload();
+  };
+
   loadScreen() {
     const tasks = JSON.parse(localStorage.getItem('tasks'));
     if (!tasks) {
       this.createEmpty();
     }
     for (let i = 0; i < tasks.length; i += 1) {
-      const { taskName, index } = tasks[i];
+      const { taskName, completed, index } = tasks[i];
       const element = document.createElement('div');
       element.classList.add('list-content');
 
@@ -71,11 +83,21 @@ export class TaskList {
 
       const input = document.createElement('input');
       input.type = 'checkbox';
-      input.id = 'check';
+      input.classList.add('check');
 
       const desc = document.createElement('label');
-      desc.id = 'task-label';
+      desc.classList.add('task-label');
       desc.contentEditable = 'true';
+
+      if (completed) {
+        desc.style.textDecoration = 'line-through';
+        desc.style.color = '#c0c0c0';
+        input.checked = true;
+      } else {
+        desc.style.textDecoration = 'none';
+        desc.style.color = '#000';
+        input.checked = false;
+      }
 
       const moveIcon = document.createElement('i');
       moveIcon.classList.add('fa-solid');
@@ -103,7 +125,6 @@ export class TaskList {
       contentDiv.append(input, desc);
       element.append(contentDiv, moveIcon, deleteIcon);
       const list = document.getElementById('list-items');
-
       list.append(element);
     }
   }
