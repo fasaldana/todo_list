@@ -52,6 +52,23 @@ export class TaskList {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   };
 
+  removeComplete = () => {
+    const tasks = JSON.parse(localStorage.getItem('tasks'));
+    let task = tasks.filter((tsk) => tsk.completed === true);
+    task.forEach((e) => {
+      tasks.splice(
+        tasks.findIndex((f) => f.completed === e.completed),
+        1
+      );
+    });
+    console.log(tasks);
+    for (let i = 0; i < tasks.length; i += 1) {
+      tasks[i].index = i + 1 - 1;
+    }
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    window.location.reload();
+  };
+
   loadScreen() {
     const tasks = JSON.parse(localStorage.getItem('tasks'));
     if (!tasks) {

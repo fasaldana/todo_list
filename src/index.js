@@ -10,3 +10,6 @@ document.querySelector('#task').addEventListener('keypress', (e) => {
 });
 task.loadScreen();
 complete();
+document.querySelector('.clear-btn').addEventListener('click', () => {
+  task.removeComplete();
+});
