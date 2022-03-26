@@ -55,14 +55,14 @@ body {
 }
 
 .list-content label {
-  padding-left: 2vw;
+  margin-left: 2vw;
 }
 
 .list-content i {
   cursor: move;
 }
 
-#check:checked + label {
+.check:checked + label {
   text-decoration: line-through;
   color: #c0c0c0;
 }

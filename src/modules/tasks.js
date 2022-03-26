@@ -1,12 +1,8 @@
-import _ from 'lodash';
+import _, { zip } from 'lodash';
 
 /* eslint-disable import/prefer-default-export */
 export class TaskList {
   list = document.getElementById('list-items');
-
-  constructor() {
-    this.todos = [];
-  }
 
   createEmpty = () => {
     const tasks = [];
@@ -62,7 +58,7 @@ export class TaskList {
       this.createEmpty();
     }
     for (let i = 0; i < tasks.length; i += 1) {
-      const { taskName, index } = tasks[i];
+      const { taskName, completed, index } = tasks[i];
       const element = document.createElement('div');
       element.classList.add('list-content');
 
@@ -71,10 +67,10 @@ export class TaskList {
 
       const input = document.createElement('input');
       input.type = 'checkbox';
-      input.id = 'check';
+      input.classList.add('check');
 
       const desc = document.createElement('label');
-      desc.id = 'task-label';
+      desc.classList.add('task-label');
       desc.contentEditable = 'true';
 
       const moveIcon = document.createElement('i');
@@ -103,7 +99,6 @@ export class TaskList {
       contentDiv.append(input, desc);
       element.append(contentDiv, moveIcon, deleteIcon);
       const list = document.getElementById('list-items');
-
       list.append(element);
     }
   }

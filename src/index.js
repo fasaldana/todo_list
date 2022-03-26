@@ -1,5 +1,6 @@
 import './style.css';
 import { TaskList } from './modules/tasks';
+import complete from './modules/statusUpdate.js';
 
 const task = new TaskList();
 document.querySelector('#task').addEventListener('keypress', (e) => {
@@ -8,3 +9,4 @@ document.querySelector('#task').addEventListener('keypress', (e) => {
   }
 });
 task.loadScreen();
+complete();
