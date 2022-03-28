@@ -10,7 +10,6 @@
 - Webpack
 
 ## Live version
-[Click here for a live version](https://fasaldana.github.io/todo_list/)
 
 ## Getting Started
 
