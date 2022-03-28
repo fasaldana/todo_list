@@ -9,6 +9,9 @@
 - JavaScript
 - Webpack
 
+## Live version
+[Click here for a live version](https://fasaldana.github.io/todo_list/)
+
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.
